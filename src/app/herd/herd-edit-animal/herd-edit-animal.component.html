@@ -1,0 +1,107 @@
+<mat-toolbar mat-dialog-title color="primary">
+  <mat-toolbar-row>
+    <i class="material-icons md-light md-24" (click)="close()" style="padding-right: 15px;">close</i>
+    <h1>Animal {{animal.tag}}</h1>
+    <i class="material-icons md-light md-24" #invalidFormTooltip="matTooltip" matTooltip="Please fill out all required fields." (click)="done()" (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()" style="position: absolute; right: 0; padding-right: 15px;">check</i>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+
+  <form name="addAnimal">
+
+    <mat-form-field style="width: 100%;">
+      <input matInput name="tag" [ngModel]="animal.tag" placeholder="Tag number" type="text" disabled>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-select name="category" [(ngModel)]="animal.category" [formControl]="categoryControl" (selectionChange)="categoryChange()" placeholder="Category" required>
+        <mat-option value="cow">Cow</mat-option>
+        <mat-option value="bull">Bull</mat-option>
+      </mat-select>
+      <mat-error *ngIf="categoryControl.invalid">Please select category.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-select name="purpose" [(ngModel)]="animal.purpose" [formControl]="purposeControl" placeholder="Purpose" required>
+        <mat-option value="beef">Beef</mat-option>
+        <mat-option value="dairy">Dairy</mat-option>
+        <mat-option value="other">Other</mat-option>
+      </mat-select>
+      <mat-error *ngIf="purposeControl.invalid">Please select purpose.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-select name="breed" [(ngModel)]="animal.breed" [formControl]="breedControl" placeholder="Breed" required>
+        <mat-option value="FR">FR</mat-option>
+        <mat-option value="FRX">FRX</mat-option>
+        <mat-option value="AAA">AAA</mat-option>
+      </mat-select>
+      <mat-error *ngIf="breedControl.invalid">Please select breed.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput #dobInput name="dob" [(ngModel)]="dob" [min]="minDate" [max]="maxDate" [formControl]="dobControl" [matDatepicker]="dobPicker" placeholder="Date of birth" required>
+      <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dobPicker></mat-datepicker>
+      <mat-error *ngIf="dobControl.invalid">Please select date of birth.</mat-error>
+    </mat-form-field>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="served" #servedCheckbox [disabled]="isBull">Served</mat-slide-toggle>
+    </div>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="inCalf" #inCalfCheckbox [disabled]="isBull">In calf</mat-slide-toggle>
+    </div>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="calved" #calvedCheckbox [disabled]="isBull">Calved</mat-slide-toggle>
+    </div>
+
+    <mat-form-field *ngIf="calvedCheckbox.checked && !isBull">
+      <input matInput #calfDateInput name="calfDate" [(ngModel)]="calfDate" [min]="minDate" [max]="maxDate" [formControl]="calfDateControl" [matDatepicker]="calfDatePicker" placeholder="Calf date" required>
+      <mat-datepicker-toggle matSuffix [for]="calfDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #calfDatePicker></mat-datepicker>
+      <mat-error *ngIf="calfDateControl.invalid">Please select calf date.</mat-error>
+    </mat-form-field>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="boughtIn" #boughtInCheckbox (change)="boughtInChange()">Bought in</mat-slide-toggle>
+    </div>
+
+    <mat-form-field *ngIf="boughtInCheckbox.checked">
+      <input #boughtDateInput matInput name="boughtDate" [(ngModel)]="boughtDate" [min]="minDate" [max]="maxDate" [formControl]="boughtDateControl" [matDatepicker]="boughtDatePicker" placeholder="Bought date" required>
+      <mat-datepicker-toggle matSuffix [for]="boughtDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #boughtDatePicker></mat-datepicker>
+      <mat-error *ngIf="boughtDateControl.invalid">Please select bought date.</mat-error>
+    </mat-form-field>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="bornOnFarm" #bornOnFarmCheckbox (change)="bornOnFarmChange()">Born on farm</mat-slide-toggle>
+    </div>
+
+    <div class="fa-form-row">
+      <mat-slide-toggle name="movedOut" #movedOutCheckbox>Moved out</mat-slide-toggle>
+    </div>
+
+    <mat-form-field style="width: 100%;">
+      <input matInput name="brand" [(ngModel)]="animal.brand" placeholder="Brand mark" (change)="trimInput($event)" #brandInput>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <textarea matInput name="notes" [(ngModel)]="animal.notes" placeholder="Notes" (change)="trimInput($event)" #notesInput></textarea>
+    </mat-form-field>
+
+    <div class="fa-form-row">
+      <button mat-raised-button (click)="resetAll()">Reset all</button>
+    </div>
+
+    <div class="fa-form-row">
+      <button mat-raised-button color="warn" (click)="deleteConfirm()">Delete animal</button>
+    </div>
+
+  </form>
+</div>
+
+<app-loader *ngIf="showLoader"></app-loader>

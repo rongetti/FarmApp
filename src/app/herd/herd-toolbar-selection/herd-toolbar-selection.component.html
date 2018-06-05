@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1><i (click)="deselectAll()" class="material-icons md-light" style="padding-right: 15px; vertical-align: middle">close</i> {{selectedNo}} selected</h1>
+
+    <i class="material-icons md-light md-24" (click)="toggleSearch()" style="position: absolute; right: 60px;">search</i>
+
+    <i [matMenuTriggerFor]="optionsMenu" class="material-icons md-light md-24" style="position: absolute; right: 0; padding-right: 15px;">more_vert</i>
+    <mat-menu #optionsMenu="matMenu">
+      <button mat-menu-item (click)="selectAll()"><i class="material-icons md-dark" style="vertical-align: middle">done_all</i> Select All</button>
+      <button mat-menu-item (click)="deselectAll()"><i class="material-icons md-dark" style="vertical-align: middle">close</i> Deselect All</button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>

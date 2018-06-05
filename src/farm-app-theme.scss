@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$farm-app-primary: mat-palette($mat-blue, 700);
+$farm-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$farm-app-warn: mat-palette($mat-deep-orange);
+
+$farm-app-theme: mat-light-theme($farm-app-primary, $farm-app-accent, $farm-app-warn);
+
+@include angular-material-theme($farm-app-theme);

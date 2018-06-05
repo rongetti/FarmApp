@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>FarmApp</h1>
+    <div (click)="closeSidenav()" style="position: absolute; right: 10px;"><i class="material-icons md-light md-36" >arrow_back</i></div>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <i class="material-icons md-48 md-light">person</i>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-list>
+  <mat-list-item *ngFor="let item of menu" (click)="closeSidenav()" [routerLink]="item.link"> <span><i class="material-icons md-dark md-inactive">{{item.icon}}</i></span> {{item.title}} </mat-list-item>
+  <mat-divider></mat-divider>
+  <h3 matSubheader>Management</h3>
+  <mat-list-item *ngFor="let item of admin" (click)="closeSidenav()" [routerLink]="item.link"> <span><i class="material-icons md-dark md-inactive">{{item.icon}}</i></span> {{item.title}} </mat-list-item>
+</mat-list>

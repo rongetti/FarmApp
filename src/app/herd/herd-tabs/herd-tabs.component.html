@@ -1,0 +1,14 @@
+<nav mat-tab-nav-bar color="accent">
+
+  <a *ngFor="let item of tabs | filterTabs" mat-tab-link routerLink="/herd/list/{{item.link}}" [active]="item.link === activeTab">
+    {{item.title | uppercase}}
+  </a>
+
+  <a mat-tab-link [matMenuTriggerFor]="customizeTabs"><i class="material-icons md-24">settings</i></a>
+  <mat-menu #customizeTabs="matMenu">
+    <button *ngFor="let item of tabs" mat-menu-item (click)="$event.stopPropagation()"><mat-checkbox [(ngModel)]="item.show" (change)="updateSettings()" >{{item.title}}</mat-checkbox></button>
+  </mat-menu>
+
+</nav>
+
+<router-outlet></router-outlet>
