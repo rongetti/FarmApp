@@ -1,3 +1,27 @@
-<p>
-  herd-view-group works!
-</p>
+<mat-toolbar mat-dialog-title color="primary">
+  <mat-toolbar-row>
+    <i class="material-icons md-light md-24" (click)="close()" style="padding-right: 15px;">close</i>
+    <h1>{{group.name}}</h1>
+    <i class="material-icons md-light md-24" #invalidFormTooltip="matTooltip" matTooltip="Please fill out all required fields." (click)="done()" (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()" style="position: absolute; right: 0; padding-right: 15px;">check</i>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div mat-dialog-content>
+
+  <form name="addAnimal">
+
+    <mat-form-field style="width: 100%;">
+      <input matInput name="name" [ngModel]="group.name" placeholder="Group name" type="text" disabled>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <input matInput name="created" [ngModel]="group.created" placeholder="Created on" type="text" disabled>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <textarea matInput name="description" [(ngModel)]="group.description" placeholder="Description" (change)="trimInput($event)" #descriptionInput></textarea>
+    </mat-form-field>
+
+  </form>
+
+</div>

@@ -18,7 +18,7 @@ export class HerdGroupsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.herdService.getGroups('Group A').then((data) => this.groups = data.docs);
+    this.herdService.getGroups().then((data) => this.groups = data.docs);
   }
 
   public viewGroup(name) {
@@ -27,6 +27,7 @@ export class HerdGroupsComponent implements OnInit {
       height: '100%',
       maxWidth: '100%',
       panelClass: 'fa-fullscreen-dialog',
+      autoFocus: false,
       data: name
     });
   }

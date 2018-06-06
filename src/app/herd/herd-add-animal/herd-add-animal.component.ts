@@ -5,18 +5,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { HerdService } from '../herd.service';
-
-export const DATE_FORMAT = {
-  parse: {
-    dateInput: 'DD/MM/YYYY'
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'DD/MM/YYYY',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+import { DATE_FORMAT } from '../../const/date-format';
 
 @Component({
   templateUrl: './herd-add-animal.component.html',

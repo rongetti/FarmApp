@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+import { HerdService } from '../herd.service';
+import { DATE_FORMAT } from '../../const/date-format';
+import { HerdGroupsComponent } from '../herd-groups/herd-groups.component';
 
 @Component({
   selector: 'app-herd-view-group',
@@ -7,9 +12,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HerdViewGroupComponent implements OnInit {
 
-  constructor() { }
+  public group = {};
+
+  constructor(
+    public herdService: HerdService,
+    public dialog: MatDialogRef<HerdGroupsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
+    this.getGroup();
+  }
+
+  private getGroup() {
+    this.herdService.getGroups(this.data).then(data => this.group = data.docs[0]);
+  }
+
+  public trimInput($event) {
+    $event.srcElement.value = $event.srcElement.value.trim();
+  }
+
+  public close() {
+    this.dialog.close();
+  }
+
+  public done() {
+    console.log('gg');
   }
 
 }

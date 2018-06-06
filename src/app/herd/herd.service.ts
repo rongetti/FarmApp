@@ -164,7 +164,6 @@ export class HerdService {
 
   public setSelectedNo() {
     this.selectedNo.next(this.currentSelection.length);
-
   }
 
   public searchInList(value) {
@@ -182,7 +181,7 @@ export class HerdService {
   }
 
   public getGroups(name?) {
-    return this.data.getGroups();
+    return this.data.getGroups(name);
   }
 
 }

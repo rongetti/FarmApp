@@ -1,24 +1,13 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 
 import { HerdService } from '../herd.service';
+import { DATE_FORMAT } from '../../const/date-format';
 import { HerdAddAnimalComponent } from '../herd-add-animal/herd-add-animal.component';
 import { DateFromStringPipe } from '../../shared/date-from-string.pipe';
-
-export const DATE_FORMAT = {
-  parse: {
-    dateInput: 'DD/MM/YYYY'
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'DD/MM/YYYY',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
 
 @Component({
   selector: 'app-herd-edit-animal',
@@ -29,7 +18,7 @@ export const DATE_FORMAT = {
     {provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT},
   ]
 })
-export class HerdEditAnimalComponent extends HerdAddAnimalComponent {
+export class HerdEditAnimalComponent extends HerdAddAnimalComponent implements OnInit {
 
   public animal = {};
 
@@ -44,6 +33,9 @@ export class HerdEditAnimalComponent extends HerdAddAnimalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     super(herdService, dialog, data);
+  }
+
+  ngOnInit() {
     this.getAnimal();
   }
 
