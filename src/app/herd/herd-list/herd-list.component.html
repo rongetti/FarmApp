@@ -1,9 +1,3 @@
-<app-herd-toolbar *ngIf="selectedNo === 0" [showSearch]="showSearch" (showSearchChangeEvent)="toggleSearch($event)"></app-herd-toolbar>
-<app-herd-toolbar-selection *ngIf="selectedNo > 0" [selectedNo]="selectedNo" (showSearchChangeEvent)="toggleSearch($event)"></app-herd-toolbar-selection>
-
-<app-herd-tabs *ngIf="selectedNo === 0 && !showSearch"></app-herd-tabs>
-<app-herd-search *ngIf="showSearch" (showSearchChangeEvent)="toggleSearch($event)" (searchListEvent)="searchInList($event)"></app-herd-search>
-
 <mat-selection-list id="animalList" class="fa-animal-list" (selectionChange)="selectionChange($event)" #animalList>
   <mat-list-option *ngFor="let animal of filteredList" value="{{ animal.tag }}" [selected]="herdService.currentSelection.indexOf(animal.tag) > -1">
     <h2 matLine><i class="material-icons md-dark md-18" style="vertical-align: top;">local_offer</i> {{ animal.tag }} ({{ animal.breed }})</h2>

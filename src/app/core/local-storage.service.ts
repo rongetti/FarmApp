@@ -44,6 +44,7 @@ export class LocalStorageService {
     } else {
       let settings = this.settingsService.settings[records];
       localStorage.setItem(records, JSON.stringify(settings));
+      console.log(settings);
     }
 
   }

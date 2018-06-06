@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSelectionList } from '@angular/material/list';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HerdService } from '../herd.service';
@@ -20,10 +20,9 @@ export class HerdListComponent implements OnInit, OnDestroy {
   public selectedNo: number;
   private selectAll$;
   private deselectAll$;
+  private searchInHerd$;
   private cachedUrl: string;
   private currentUrl: string;
-
-  public showSearch = false;
 
   constructor(
     private router: Router,
@@ -53,6 +52,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
     });
     this.selectAll$ = this.herdService.selectAll$.subscribe(() => this.selectAll());
     this.deselectAll$ = this.herdService.deselectAll$.subscribe(() => this.deselectAll());
+    this.searchInHerd$ = this.herdService.searchInHerd$.subscribe((value) => this.searchInList(value));
   }
 
   public refreshList() {
@@ -69,7 +69,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
         this.herdService.currentSelection.splice(index, 1);
       }
     }
-    this.selectedNo = this.herdService.currentSelection.length;
+    this.setSelectedNo();
   }
 
   public selectAll() {
@@ -83,7 +83,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
         this.herdService.currentSelection.push(item);
       }
     }
-    this.selectedNo = this.herdService.currentSelection.length;
+    this.setSelectedNo();
   }
 
   public deselectAll() {
@@ -95,7 +95,12 @@ export class HerdListComponent implements OnInit, OnDestroy {
         this.herdService.currentSelection.splice(index, 1);
       }
     }
+    this.setSelectedNo();
+  }
+
+  private setSelectedNo() {
     this.selectedNo = this.herdService.currentSelection.length;
+    this.herdService.setSelectedNo();
   }
 
   private getUnselectedOptions() {
@@ -112,10 +117,6 @@ export class HerdListComponent implements OnInit, OnDestroy {
     });
 
     return allShown.filter( i => selected.indexOf(i) === -1  );
-  }
-
-  public toggleSearch() {
-    this.showSearch = !this.showSearch;
   }
 
   public searchInList(value) {
@@ -191,9 +192,20 @@ export class HerdListComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
+  private sortBy(a, b, key) {
+    if (a[key] < b[key]) {
+      return -1;
+    } else if (a[key] > b[key]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
   ngOnDestroy() {
-    this.selectAll$.unsubscribe();
     this.deselectAll();
+    this.selectAll$.unsubscribe();
+    this.deselectAll$.unsubscribe();
   }
 
 }

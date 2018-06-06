@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { HerdService } from '../herd.service';
-
 @Component({
   selector: 'app-herd-search',
   templateUrl: './herd-search.component.html',
@@ -17,12 +15,13 @@ export class HerdSearchComponent implements OnInit, OnDestroy {
   public list: string;
 
   constructor(
-    private route: ActivatedRoute,
-    private herdService: HerdService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe( params => this.list = params['tab']);
+    this.route.firstChild.params.subscribe(params => {
+      this.list = params['tab'];
+    });
   }
 
   public closeSearch() {

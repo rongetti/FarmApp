@@ -19,7 +19,8 @@ export class SidenavComponent  {
     link: '/herd/list/all',
     title: 'Animals',
     icon: 'list'
-  }, {
+  },
+    {
     link: '/herd/list/all',
     title: 'Farm',
     icon: 'home'
@@ -27,7 +28,8 @@ export class SidenavComponent  {
     link: '/herd/list/all',
     title: 'Audit',
     icon: 'playlist_add_check'
-  }];
+  }
+  ];
 
   public admin = [{
     link: '/herd/list/all',

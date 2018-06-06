@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { of } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
 
 import { HerdService } from '../herd.service';
 
@@ -13,15 +15,21 @@ export class HerdTabsComponent implements OnInit, AfterViewInit {
 
   public activeTab: string;
 
-  public tabs = this.herdService.animalTabs;
-
   constructor(
     public herdService: HerdService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
+  public tabs = this.herdService.animalTabs;
+
   ngOnInit() {
-    this.route.params.subscribe( params => this.activeTab = params['tab'] );
+    this.activeTab = this.route.snapshot.firstChild.url[0].path;
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd), switchMap(() =>
+      (this.route.firstChild && this.route.firstChild.url) || of({})
+    )).subscribe(params => {
+      this.activeTab = params[0].path;
+    });
   }
 
   ngAfterViewInit() {
@@ -34,7 +42,7 @@ export class HerdTabsComponent implements OnInit, AfterViewInit {
   }
 
   public updateSettings() {
-    this.herdService.updateSettings();
+    this.herdService.updateTabSettings('animalTabs', this.tabs);
   }
 
 }

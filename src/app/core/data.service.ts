@@ -16,11 +16,8 @@ export class DataService {
   }
 
   private initDatabase() {
-    this.initHerd().then(() => {
-      this.initGroups();
-    }).then(() => {
-      console.log('gg');
-    });
+    this.initHerd();
+    this.initGroups();
   }
 
   private initHerd() {
@@ -52,6 +49,10 @@ export class DataService {
         }
         return this.dbGroups.bulkDocs(data);
       }
+    }).then(() => {
+      return this.dbGroups.createIndex({
+        index: {fields: ['name']}
+      });
     });
 
   }
@@ -62,8 +63,12 @@ export class DataService {
       selector[filterBy] = filter;
     }
     return this.dbHerd.find({
-      selector: selector,
-      sort: sort
+      selector: selector
+    }).then(data => {
+      if (sort) {
+        data.docs.sort(sort);
+      }
+      return data;
     });
   }
 
@@ -84,6 +89,18 @@ export class DataService {
 
   public deleteAnimal(animal) {
     return this.dbHerd.get(animal).then(doc => this.dbHerd.remove(doc));
+  }
+
+  public getGroups(name?) {
+    let selector = {};
+    if (name) {
+      selector['name'] = name;
+    }
+    return this.dbGroups.find({
+      selector: selector
+    }).then(data => {
+      return data;
+    });
   }
 
 }

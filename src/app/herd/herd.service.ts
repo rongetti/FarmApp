@@ -10,32 +10,132 @@ export class HerdService {
   constructor(
     private data: DataService,
     private settingsService: SettingsService
-  ) {}
+  ) {
+    this.getSettings();
+  }
 
-  public animalTabs = this.settingsService.settings.animalTabs;
+  public animalTabs = [
+    {
+      title: 'All',
+      link: 'all',
+      options: {filterBy: null, filter: null},
+      show: true
+    },
+    {
+      title: 'Groups',
+      link: 'groups',
+      options: {filterBy: null, filter: null},
+      show: true
+    },
+    {
+      title: 'Dairy',
+      link: 'dairy',
+      options: {filterBy: 'purpose', filter: 'dairy'},
+      show: true
+    },
+    {
+      title: 'Beef',
+      link: 'beef',
+      options: {filterBy: 'purpose', filter: 'beef'},
+      show: true
+    },
+    {
+      title: 'Bulls',
+      link: 'bulls',
+      options: {filterBy: 'category', filter: 'bull'},
+      show: true
+    },
+    {
+      title: 'Calved Cows',
+      link: 'calved',
+      options: {filterBy: 'calved', filter: true},
+      show: true
+    },
+    {
+      title: 'In Calf',
+      link: 'in-calf',
+      options: {filterBy: 'inCalf', filter: true},
+      show: true
+    },
+    {
+      title: 'Served',
+      link: 'served',
+      options: {filterBy: 'served', filter: true},
+      show: true
+    },
+    {
+      title: 'Bought In',
+      link: 'bought-in',
+      options: {filterBy: 'boughtIn', filter: true},
+      show: true
+    },
+    {
+      title: 'Born On Farm',
+      link: 'born-on-farm',
+      options: {filterBy: 'bornOnFarm', filter: true},
+      show: true
+    },
+    {
+      title: 'Moved Out',
+      link: 'moved-out',
+      options: {filterBy: 'movedOut', filter: true},
+      show: true
+    },
+    {
+      title: 'Duration In Herd',
+      link: 'duration-in-herd',
+      options: {filterBy: null, filter: null, sort: function (a, b) {
+        if (a['dob'] < b['dob']) {
+          return -1;
+        } else if (a['dob'] > b['dob']) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }
+      },
+      show: true
+    }
+  ];
 
   public currentSelection = [];
 
   private selectAll = new Subject<void>();
-  selectAll$ = this.selectAll.asObservable();
+  public selectAll$ = this.selectAll.asObservable();
 
   private deselectAll = new Subject<void>();
   public deselectAll$ = this.deselectAll.asObservable();
+
+  private selectedNo = new Subject<number>();
+  public selectedNo$ = this.selectedNo.asObservable();
+
+  private searchInHerd = new Subject<string>();
+  public searchInHerd$ = this.searchInHerd.asObservable();
+
+  private getSettings() {
+    let tabs = this.settingsService.settings['animalTabs'];
+    for (let tab of tabs) {
+      let i = this.animalTabs.findIndex(item => {
+        return item['title'] === tab['title'];
+      });
+      this.animalTabs[i]['show'] = tab['show'];
+    }
+  }
 
   public getAnimals(tab?) {
     let items;
     let filterBy = null;
     let filter = null;
-    let sortBy = null;
+    let sort = null;
     if (tab) {
       items = this.animalTabs.filter(item => item.link === tab);
       filterBy = items[0].options.filterBy;
       filter = items[0].options.filter;
-      if (items[0].options.hasOwnProperty('sortBy')) {
-        sortBy = items[0].options.sortBy;
+      if (items[0].options.hasOwnProperty('sort')) {
+        sort = items[0].options.sort;
       }
     }
-    return this.data.getAnimals(filterBy, filter, sortBy);
+    return this.data.getAnimals(filterBy, filter, sort);
   }
 
   public getAnimalByTag(tag) {
@@ -62,8 +162,27 @@ export class HerdService {
     this.deselectAll.next();
   }
 
-  public updateSettings() {
-    this.settingsService.updateSettings();
+  public setSelectedNo() {
+    this.selectedNo.next(this.currentSelection.length);
+
+  }
+
+  public searchInList(value) {
+    this.searchInHerd.next(value);
+  }
+
+  public updateTabSettings(name, source) {
+    this[name] = source;
+    let settings = [];
+    for (let item of source) {
+      let toSave = {title: item['title'], show: item['show']};
+      settings.push(toSave);
+    }
+    this.settingsService.updateSettings(name, settings);
+  }
+
+  public getGroups(name?) {
+    return this.data.getGroups();
   }
 
 }
