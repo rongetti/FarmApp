@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HerdService } from '../herd.service';
 import { HerdViewGroupComponent } from '../herd-view-group/herd-view-group.component';
+import { HerdCreateGroupComponent } from '../herd-create-group/herd-create-group.component';
 
 @Component({
   templateUrl: './herd-groups.component.html',
@@ -50,6 +51,24 @@ export class HerdGroupsComponent implements OnInit {
           } else {
             this.showNotification('Group "' + result.name + '" updated.');
           }
+        }
+      }
+    });
+  }
+
+  public createGroup() {
+    let dialog = this.dialog.open(HerdCreateGroupComponent, {
+      width: '100%',
+      height: '100%',
+      maxWidth: '100%',
+      panelClass: 'fa-fullscreen-dialog'
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.success) {
+          this.refreshList();
+          this.showNotification('Group "' + result.name + '" created.');
         }
       }
     });

@@ -103,6 +103,11 @@ export class DataService {
     });
   }
 
+  public createGroup(group) {
+    group['_id'] = group['name'].toLowerCase().replace(/ /g, '');
+    return this.dbGroups.put(group);
+  }
+
   public updateGroup(group) {
     return this.dbGroups.put(group);
   }

@@ -32,7 +32,8 @@ import { HerdCreateGroupComponent } from './herd-create-group/herd-create-group.
   entryComponents: [
     HerdAddAnimalComponent,
     HerdEditAnimalComponent,
-    HerdViewGroupComponent
+    HerdViewGroupComponent,
+    HerdCreateGroupComponent
   ],
   declarations: [
     HerdComponent,

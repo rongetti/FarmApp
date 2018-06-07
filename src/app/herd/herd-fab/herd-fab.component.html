@@ -1,6 +1,6 @@
 <div style="">
   <app-backdrop [show]="open" (closeEvent)="close($event)"></app-backdrop>
-  <smd-fab-speed-dial class="mat-fab-bottom-right" [(open)]="open" direction="up" animationMode="scale" [fixed]="selectedNo === 0">
+  <smd-fab-speed-dial class="fa-fab-bottom-right" [(open)]="open" direction="up" animationMode="scale" [fixed]="selectedNo === 0">
     <smd-fab-trigger spin="true">
       <button mat-fab (click)="clickFab()" ><i class="material-icons md-light md-24">{{ selectedNo === 0 ? 'add' : (open ? 'close' : 'chevron_right') }}</i></button>
     </smd-fab-trigger>

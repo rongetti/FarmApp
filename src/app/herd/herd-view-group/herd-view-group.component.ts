@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { HerdService } from '../herd.service';
-import { DATE_FORMAT } from '../../const/date-format';
 import { HerdGroupsComponent } from '../herd-groups/herd-groups.component';
 import { SelectDialogComponent } from '../../shared/select-dialog/select-dialog.component';
 

@@ -9,3 +9,7 @@
 </mat-nav-list>
 
 <div class="fa-no-found" *ngIf="groups.length === 0">No groups found</div>
+
+<div class="fa-fab-bottom-right">
+  <button mat-fab (click)="createGroup()"><i class="material-icons md-light md-24">add</i></button>
+</div>
