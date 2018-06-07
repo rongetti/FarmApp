@@ -2,6 +2,6 @@
 <app-herd-toolbar-selection *ngIf="selectedNo > 0" [selectedNo]="selectedNo" (showSearchChangeEvent)="toggleSearch($event)"></app-herd-toolbar-selection>
 
 <app-herd-tabs *ngIf="selectedNo === 0 && !showSearch"></app-herd-tabs>
-<app-herd-search *ngIf="showSearch" (showSearchChangeEvent)="toggleSearch($event)" (searchListEvent)="searchInList($event)"></app-herd-search>
+<app-search-list *ngIf="showSearch" (showSearchChangeEvent)="toggleSearch($event)" (searchListEvent)="searchInList($event)" [placeholder]="'Search ' + activeTab + '...'" [hideButton]="true"></app-search-list>
 
 <router-outlet></router-outlet>

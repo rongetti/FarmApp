@@ -1,0 +1,12 @@
+<div class="fa-search-list">
+
+  <i *ngIf="hideButton" class="material-icons md-dark md-36" style="padding: 0 15px 0 0; vertical-align: middle;" (click)="closeSearch()">arrow_back</i>
+
+  <mat-form-field class="search-form" style="flex-grow: 100">
+    <input matInput [placeholder]="placeholder" #searchField (input)="search(searchField.value)">
+    <button mat-button *ngIf="searchField.value" matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch();">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+</div>

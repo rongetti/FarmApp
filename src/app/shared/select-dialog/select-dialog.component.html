@@ -1,0 +1,19 @@
+<mat-toolbar mat-dialog-title color="primary">
+  <mat-toolbar-row>
+    <i class="material-icons md-light md-24" (click)="close()" style="padding-right: 15px;">close</i>
+    <h1>{{ selectedList.length === 0 ? title : selectedList.length + ' selected' }}</h1>
+    <i class="material-icons md-light md-24" (click)="done()" style="position: absolute; right: 0; padding-right: 15px;">check</i>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-search-list (searchListEvent)="searchInList($event)" [placeholder]="'Search animals...'" [hideButton]="false" style="position: fixed; top: 56px; width: 100%; z-index: 9;"></app-search-list>
+
+<div mat-dialog-content>
+
+  <mat-selection-list #list class="fa-animal-list" (selectionChange)="selectionChange($event)">
+    <mat-list-option *ngFor="let item of searchableList" value="{{ item }}" [selected]="selectedList.indexOf(item) > -1">
+      <h2 matLine>{{ item }}</h2>
+    </mat-list-option >
+  </mat-selection-list>
+
+</div>

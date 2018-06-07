@@ -39,6 +39,7 @@ export class HerdAddAnimalComponent {
   ) {  }
 
   public showLoader = false;
+  public loaderLabel: string;
 
   public maxDate = new Date();
   public minDate = new Date(1980, 0, 1);
@@ -78,6 +79,7 @@ export class HerdAddAnimalComponent {
     if (this.checkIfFormValid()) {
 
       this.showLoader = true;
+      this.loaderLabel = 'Adding animal...';
 
       let data = {};
       data['tag'] = this.tagControl.value;

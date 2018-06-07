@@ -5,6 +5,9 @@ import { MaterialModule } from '../material.module';
 import { BackdropComponent } from './backdrop/backdrop.component';
 import { DateFromStringPipe } from './date-from-string.pipe';
 import { LoaderComponent } from './loader/loader.component';
+import { SelectDialogComponent } from './select-dialog/select-dialog.component';
+import { SearchListComponent } from './search-list/search-list.component';
+
 
 @NgModule({
   imports: [
@@ -14,12 +17,19 @@ import { LoaderComponent } from './loader/loader.component';
   exports: [
     BackdropComponent,
     DateFromStringPipe,
-    LoaderComponent
+    LoaderComponent,
+    SelectDialogComponent,
+    SearchListComponent
+  ],
+  entryComponents: [
+    SelectDialogComponent
   ],
   declarations: [
     BackdropComponent,
     DateFromStringPipe,
-    LoaderComponent
+    LoaderComponent,
+    SelectDialogComponent,
+    SearchListComponent
   ]
 })
 export class SharedModule { }

@@ -4,11 +4,20 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 9;
 }
 
 .fa-loader mat-spinner {
   top: calc(50% - 25px);
   left: calc(50% - 25px);
+}
+
+.fa-loader-text {
+  position: absolute;
+  top: calc(50% + 35px);
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
 }

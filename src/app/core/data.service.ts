@@ -103,4 +103,12 @@ export class DataService {
     });
   }
 
+  public updateGroup(group) {
+    return this.dbGroups.put(group);
+  }
+
+  public deleteGroup(group) {
+    return this.dbGroups.get(group).then(doc => this.dbGroups.remove(doc));
+  }
+
 }

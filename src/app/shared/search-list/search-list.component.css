@@ -1,0 +1,7 @@
+.fa-search-list {
+  display: flex;,
+  float: left;
+  padding: 5px 15px 0;
+  align-items: center;
+  background-color: #fff;
+}

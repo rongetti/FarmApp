@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { HerdService } from '../herd.service';
 import { HerdViewGroupComponent } from '../herd-view-group/herd-view-group.component';
@@ -14,11 +15,20 @@ export class HerdGroupsComponent implements OnInit {
 
   constructor(
     public herdService: HerdService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
+    this.getGroups();
+  }
+
+  private getGroups() {
     this.herdService.getGroups().then((data) => this.groups = data.docs);
+  }
+
+  public refreshList() {
+    this.getGroups();
   }
 
   public viewGroup(name) {
@@ -29,6 +39,25 @@ export class HerdGroupsComponent implements OnInit {
       panelClass: 'fa-fullscreen-dialog',
       autoFocus: false,
       data: name
+    });
+
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.success) {
+          this.refreshList();
+          if (result.deleted) {
+            this.showNotification('Group "' + result.name + '" successfully deleted.');
+          } else {
+            this.showNotification('Group "' + result.name + '" updated.');
+          }
+        }
+      }
+    });
+  }
+
+  private showNotification(message) {
+    this.snackBar.open(message, '', {
+      duration: 3000,
     });
   }
 

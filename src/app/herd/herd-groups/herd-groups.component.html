@@ -1,6 +1,6 @@
 <mat-nav-list class="fa-animal-list">
   <mat-list-item *ngFor="let group of groups" (click)="viewGroup(group.name)">
-    <h3 matLine><i class="material-icons md-dark md-18" style="vertical-align: top;">group_work</i> {{group.name}} </h3>
+    <h3 matLine><i class="material-icons md-dark md-18" style="vertical-align: top;">group_work</i> {{group.name}} ({{group.animals.length}})</h3>
     <p matLine>
       <span>Created on {{group.created}} </span>
       <span> -- {{ (group.description.length > 20) ? (group.description | slice:0:20) + '...' : (group.description) }}</span>

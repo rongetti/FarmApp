@@ -63,6 +63,7 @@ export class HerdEditAnimalComponent extends HerdAddAnimalComponent implements O
 
   public done() {
     this.showLoader = true;
+    this.loaderLabel = 'Saving changes...';
 
     this.herdService.getAnimalByTag(this.data.tag).then(data => {
       Object.assign(data, this.animal);
@@ -96,6 +97,7 @@ export class HerdEditAnimalComponent extends HerdAddAnimalComponent implements O
   public deleteConfirm() {
     if (confirm('You are about to delete #' + this.data.tag + ' pemanently from herd?')) {
       this.showLoader = true;
+      this.loaderLabel = 'Deleting animal...';
       this.delete();
     }
   }

@@ -184,4 +184,12 @@ export class HerdService {
     return this.data.getGroups(name);
   }
 
+  public updateGroup(group) {
+    return this.data.updateGroup(group);
+  }
+
+  public deleteGroup(group) {
+    return this.data.deleteGroup(group);
+  }
+
 }

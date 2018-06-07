@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HerdSearchComponent } from './herd-search.component';
+import { SelectDialogComponent } from './select-dialog.component';
 
-describe('HerdSearchComponent', () => {
-  let component: HerdSearchComponent;
-  let fixture: ComponentFixture<HerdSearchComponent>;
+describe('SelectDialogComponent', () => {
+  let component: SelectDialogComponent;
+  let fixture: ComponentFixture<SelectDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HerdSearchComponent ]
+      declarations: [ SelectDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HerdSearchComponent);
+    fixture = TestBed.createComponent(SelectDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

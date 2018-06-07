@@ -12,13 +12,13 @@ import { HerdToolbarComponent } from './herd-toolbar/herd-toolbar.component';
 import { HerdToolbarSelectionComponent } from './herd-toolbar-selection/herd-toolbar-selection.component';
 import { HerdTabsComponent } from './herd-tabs/herd-tabs.component';
 import { HerdTabsPipe } from './herd-tabs/herd-tabs.pipe';
-import { HerdSearchComponent } from './herd-search/herd-search.component';
 import { HerdAgePipe } from './herd-list/herd-age.pipe';
 import { HerdFabComponent } from './herd-fab/herd-fab.component';
 import { HerdAddAnimalComponent } from './herd-add-animal/herd-add-animal.component';
 import { HerdEditAnimalComponent } from './herd-edit-animal/herd-edit-animal.component';
 import { HerdGroupsComponent } from './herd-groups/herd-groups.component';
 import { HerdViewGroupComponent } from './herd-view-group/herd-view-group.component';
+import { HerdCreateGroupComponent } from './herd-create-group/herd-create-group.component';
 
 @NgModule({
   imports: [
@@ -41,13 +41,13 @@ import { HerdViewGroupComponent } from './herd-view-group/herd-view-group.compon
     HerdTabsComponent,
     HerdTabsPipe,
     HerdToolbarSelectionComponent,
-    HerdSearchComponent,
     HerdAgePipe,
     HerdFabComponent,
     HerdAddAnimalComponent,
     HerdEditAnimalComponent,
     HerdGroupsComponent,
-    HerdViewGroupComponent
+    HerdViewGroupComponent,
+    HerdCreateGroupComponent
   ],
   providers: [
     HerdService
