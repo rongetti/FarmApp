@@ -10,7 +10,8 @@ export class HerdFabComponent implements OnInit {
 
   @Input() selectedNo: number;
   @Output() showAddEvent: EventEmitter<void> = new EventEmitter<void>();
-  @Output() openDialogEvent: EventEmitter<string> = new EventEmitter<string>();
+  @Output() openEditDialogEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output() addToGroupEvent: EventEmitter<void> = new EventEmitter<void>();
   @ViewChild('editTooltip') editTooltip: MatTooltip;
   @ViewChild('groupTooltip') groupTooltip: MatTooltip;
   @ViewChild('treatmentTooltip') treatmentTooltip: MatTooltip;
@@ -39,9 +40,14 @@ export class HerdFabComponent implements OnInit {
     this.open = $event ? !$event : $event;
   }
 
-  public openDialog(dialog) {
+  public openEditDialog(dialog) {
     this.hideTooltips();
-    this.openDialogEvent.emit(dialog);
+    this.openEditDialogEvent.emit();
+  }
+
+  public addToGroup() {
+    this.hideTooltips();
+    this.addToGroupEvent.emit();
   }
 
   private showTooltips() {

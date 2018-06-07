@@ -9,4 +9,4 @@
 
 <div class="fa-no-found" *ngIf="filteredList.length === 0">No animals found</div>
 
-<app-herd-fab [selectedNo]="selectedNo" (showAddEvent)="showAdd()" (openDialogEvent)="openDialog($event)"></app-herd-fab>
+<app-herd-fab [selectedNo]="selectedNo" (showAddEvent)="showAdd()" (openEditDialogEvent)="openEditDialog()" (addToGroupEvent)="addToGroup()"></app-herd-fab>

@@ -19,6 +19,8 @@ import { HerdEditAnimalComponent } from './herd-edit-animal/herd-edit-animal.com
 import { HerdGroupsComponent } from './herd-groups/herd-groups.component';
 import { HerdViewGroupComponent } from './herd-view-group/herd-view-group.component';
 import { HerdCreateGroupComponent } from './herd-create-group/herd-create-group.component';
+import { HerdAddToGroupComponent } from './herd-add-to-group/herd-add-to-group.component';
+import { HerdChooseGroupComponent } from './herd-choose-group/herd-choose-group.component';
 
 @NgModule({
   imports: [
@@ -33,7 +35,9 @@ import { HerdCreateGroupComponent } from './herd-create-group/herd-create-group.
     HerdAddAnimalComponent,
     HerdEditAnimalComponent,
     HerdViewGroupComponent,
-    HerdCreateGroupComponent
+    HerdCreateGroupComponent,
+    HerdAddToGroupComponent,
+    HerdChooseGroupComponent
   ],
   declarations: [
     HerdComponent,
@@ -48,7 +52,9 @@ import { HerdCreateGroupComponent } from './herd-create-group/herd-create-group.
     HerdEditAnimalComponent,
     HerdGroupsComponent,
     HerdViewGroupComponent,
-    HerdCreateGroupComponent
+    HerdCreateGroupComponent,
+    HerdAddToGroupComponent,
+    HerdChooseGroupComponent
   ],
   providers: [
     HerdService

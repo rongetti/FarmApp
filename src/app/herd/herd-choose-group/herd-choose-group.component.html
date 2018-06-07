@@ -1,0 +1,16 @@
+<form name="addAnimal">
+
+  <mat-form-field style="width: 100%;">
+    <mat-select #groupSelect name="groups" placeholder="Choose group to add to...">
+      <mat-option *ngFor="let group of groups" [value]="group.name">{{group.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="fa-form-row" style="text-align: center;">
+    <button mat-raised-button color="accent" (click)="add(groupSelect.value)" [disabled]="!groupSelect.value">Add</button>
+    <button mat-raised-button color="basic" (click)="cancel()">Cancel</button>
+  </div>
+
+</form>
+
+<app-loader *ngIf="showLoader" [label]="loaderLabel"></app-loader>

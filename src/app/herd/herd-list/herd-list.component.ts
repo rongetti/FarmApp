@@ -3,10 +3,14 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSelectionList } from '@angular/material/list';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 import { HerdService } from '../herd.service';
 import { HerdAddAnimalComponent } from '../herd-add-animal/herd-add-animal.component';
 import { HerdEditAnimalComponent } from '../herd-edit-animal/herd-edit-animal.component';
+import { HerdAddToGroupComponent } from '../herd-add-to-group/herd-add-to-group.component';
+import { HerdCreateGroupComponent } from '../herd-create-group/herd-create-group.component';
+import { HerdChooseGroupComponent } from '../herd-choose-group/herd-choose-group.component';
 
 @Component({
   templateUrl: './herd-list.component.html',
@@ -29,7 +33,8 @@ export class HerdListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public herdService: HerdService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private bottomSheet: MatBottomSheet
   ) {
     this.currentUrl = this.router.url;
     router.events.subscribe(event => {
@@ -186,20 +191,45 @@ export class HerdListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public openDialog($event) {
-    setTimeout( () => {
+  public openEditDialog() {
+    setTimeout(() => {
       this.showEdit();
     }, 200);
   }
 
-  private sortBy(a, b, key) {
-    if (a[key] < b[key]) {
-      return -1;
-    } else if (a[key] > b[key]) {
-      return 1;
-    } else {
-      return 0;
-    }
+  public addToGroup() {
+    setTimeout(() => {
+      let bottomSheet = this.bottomSheet.open(HerdAddToGroupComponent);
+      bottomSheet.afterDismissed().subscribe(result => {
+        if (result === 'existing') {
+          let dialog = this.dialog.open(HerdChooseGroupComponent);
+          dialog.afterClosed().subscribe(res => {
+            if (res) {
+              if (res.success) {
+                this.showNotification('Successfully added to "' + res.name + '".');
+              }
+            }
+          });
+        } else if (result === 'new') {
+          let dialog = this.dialog.open(HerdCreateGroupComponent, {
+            width: '100%',
+            height: '100%',
+            maxWidth: '100%',
+            panelClass: 'fa-fullscreen-dialog',
+            data: this.herdService.currentSelection
+          });
+
+          dialog.afterClosed().subscribe(res => {
+            if (res) {
+              if (res.success) {
+                this.refreshList();
+                this.showNotification('Group "' + res.name + '" created.');
+              }
+            }
+          });
+        }
+      });
+    }, 200);
   }
 
   ngOnDestroy() {

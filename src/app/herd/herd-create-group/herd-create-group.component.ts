@@ -49,13 +49,15 @@ export class HerdCreateGroupComponent extends HerdViewGroupComponent implements 
   }
 
   public done() {
-    this.showLoader = true;
-    this.loaderLabel = 'Saving changes...';
+    if (this.nameControl.valid) {
+      this.showLoader = true;
+      this.loaderLabel = 'Saving changes...';
 
-    this.herdService.createGroup(this.group).then(() => {
-      this.showLoader = false;
-      this.dialog.close({success: true, name: this.group['name']});
-    });
+      this.herdService.createGroup(this.group).then(() => {
+        this.showLoader = false;
+        this.dialog.close({success: true, name: this.group['name']});
+      });
+    }
   }
 
 }
