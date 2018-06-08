@@ -6,14 +6,11 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<app-search-list (searchListEvent)="searchInList($event)" [placeholder]="'Search animals...'" [hideButton]="false" style="position: fixed; top: 56px; width: 100%; z-index: 9;"></app-search-list>
 
-<div mat-dialog-content>
+<app-search-list (searchListEvent)="searchInList($event)" [placeholder]="'Search animals...'" [hideButton]="false"></app-search-list>
 
-  <mat-selection-list #list class="fa-animal-list" (selectionChange)="selectionChange($event)">
-    <mat-list-option *ngFor="let item of searchableList" value="{{ item }}" [selected]="selectedList.indexOf(item) > -1">
-      <h2 matLine>{{ item }}</h2>
-    </mat-list-option >
-  </mat-selection-list>
-
-</div>
+<mat-selection-list #list class="fa-animal-list" (selectionChange)="selectionChange($event)">
+  <mat-list-option *ngFor="let item of searchableList" value="{{ item }}" [selected]="selectedList.indexOf(item) > -1">
+    <h2 matLine>{{ item }}</h2>
+  </mat-list-option >
+</mat-selection-list>

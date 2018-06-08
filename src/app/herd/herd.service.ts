@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import * as moment from 'moment';
 
 import { DataService } from '../core/data.service';
 import { SettingsService } from '../core/settings.service';
@@ -85,15 +86,26 @@ export class HerdService {
       title: 'Duration In Herd',
       link: 'duration-in-herd',
       options: {filterBy: null, filter: null, sort: function (a, b) {
-        if (a['dob'] < b['dob']) {
+        let dateA;
+        let dateB;
+        if (a['boughtDate'] !== null) {
+          dateA = moment(a['boughtDate'], 'DD/MM/YYYY');
+        } else {
+          dateA = moment(a['dob'], 'DD/MM/YYYY');
+        }
+        if (b['boughtDate'] !== null) {
+          dateB = moment(b['boughtDate'], 'DD/MM/YYYY');
+        } else {
+          dateB = moment(b['dob'], 'DD/MM/YYYY');
+        }
+        if (dateA < dateB) {
           return -1;
-        } else if (a['dob'] > b['dob']) {
+        } else if (dateA > dateB) {
           return 1;
         } else {
           return 0;
         }
-      }
-      },
+      }},
       show: true
     }
   ];

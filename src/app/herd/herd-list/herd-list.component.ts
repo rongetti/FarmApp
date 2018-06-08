@@ -124,7 +124,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
     return allShown.filter( i => selected.indexOf(i) === -1  );
   }
 
-  public searchInList(value) {
+  private searchInList(value) {
     let activeTab = this.route.snapshot.params.tab;
     this.herdService.getAnimals(activeTab).then(data => {
       this.filteredList = data.docs.filter(

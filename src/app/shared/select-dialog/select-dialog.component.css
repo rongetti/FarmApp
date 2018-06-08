@@ -1,5 +1,10 @@
-.mat-dialog-content {
+app-search-list {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+}
+
+mat-selection-list {
   position: relative;
-  top: 106px;
-  margin: 0;
+  top: 105px;
 }

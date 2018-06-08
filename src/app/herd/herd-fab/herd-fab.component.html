@@ -8,7 +8,7 @@
     <smd-fab-actions>
       <button mat-mini-fab color="primary" #editTooltip="matTooltip" (click)="openEditDialog()" *ngIf="selectedNo === 1" matTooltipPosition="left" matTooltip="View/Edit animal..." (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()"><i class="material-icons md-light md-24">edit</i></button>
       <button mat-mini-fab color="primary" #groupTooltip="matTooltip" (click)="addToGroup()" matTooltipPosition="left" matTooltip="Add to group..." (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()"><i class="material-icons md-light md-24">group_work</i></button>
-      <button mat-mini-fab color="primary" #treatmentTooltip="matTooltip" (click)="openDialog('treatment')" matTooltipPosition="left" matTooltip="Add treatment..." (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()"><i class="material-icons md-light md-24">colorize</i></button>
+      <button mat-mini-fab color="primary" #treatmentTooltip="matTooltip" (click)="addTreatment()" matTooltipPosition="left" matTooltip="Add treatment..." (mouseenter)="$event.stopImmediatePropagation()" (mouseleave)="$event.stopImmediatePropagation()"><i class="material-icons md-light md-24">colorize</i></button>
     </smd-fab-actions>
   </smd-fab-speed-dial>
 </div>

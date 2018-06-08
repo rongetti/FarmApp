@@ -13,6 +13,7 @@ import { HerdCreateGroupComponent } from '../herd-create-group/herd-create-group
 export class HerdGroupsComponent implements OnInit {
 
   public groups = [];
+  private searchInHerd$;
 
   constructor(
     public herdService: HerdService,
@@ -22,6 +23,7 @@ export class HerdGroupsComponent implements OnInit {
 
   ngOnInit() {
     this.getGroups();
+    this.searchInHerd$ = this.herdService.searchInHerd$.subscribe((value) => this.searchInList(value));
   }
 
   private getGroups() {
@@ -78,6 +80,10 @@ export class HerdGroupsComponent implements OnInit {
     this.snackBar.open(message, '', {
       duration: 3000,
     });
+  }
+
+  private searchInList(value) {
+
   }
 
 }

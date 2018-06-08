@@ -29,6 +29,7 @@ export class HerdComponent implements OnInit, OnDestroy {
       (this.route.firstChild && this.route.firstChild.url) || of({})
     )).subscribe(params => {
       this.activeTab = params[0].path;
+      this.showSearch = false;
     });
   }
 
