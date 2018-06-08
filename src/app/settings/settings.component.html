@@ -1,0 +1,12 @@
+<app-common-toolbar [title]="'Settings'"></app-common-toolbar>
+
+<div class="fa-scrollable-contnent">
+
+  <div class="fa-settings-group">
+    <h3 class="fa-settings-label">Change theme:</h3>
+    <mat-radio-group class="fa-radio-group" (change)="setTheme($event)" [value]="selectedTheme">
+      <mat-radio-button class="fa-radio-button" *ngFor="let theme of themes" [value]="theme.cssClass">{{theme.name}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+</div>

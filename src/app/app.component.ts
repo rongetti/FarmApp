@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { LocalStorageService } from './core/local-storage.service';
 import { SidenavService } from './sidenav.service';
+import { SettingsService } from './core/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,28 @@ import { SidenavService } from './sidenav.service';
 })
 export class AppComponent implements OnInit {
 
+  @HostBinding('class') componentCssClass;
   @ViewChild('sidenav') public sidenav: MatSidenav;
+
+  public setThemeEvent$;
 
   constructor(
     private sidenavService: SidenavService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private settingsService: SettingsService,
+    public overlayContainer: OverlayContainer
   ) {
-    localStorageService.init();
+    this.localStorageService.init();
   }
 
   ngOnInit(): void {
     this.sidenavService.setSidenav(this.sidenav);
+    this.setThemeEvent$ = this.settingsService.setThemeEvent$.subscribe(theme => this.setTheme(theme));
+  }
+
+  public setTheme(theme) {
+    this.overlayContainer.getContainerElement().classList.add(theme);
+    this.componentCssClass = theme;
   }
 
 }

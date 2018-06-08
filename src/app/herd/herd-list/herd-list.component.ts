@@ -48,7 +48,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.selectedNo = 0;
     this.route.params.subscribe(params => {
-      this.herdService.getAnimals(params['tab']).then(data => {this.filteredList = data.docs; console.log(data.docs); });
+      this.herdService.getAnimals(params['tab']).then(data => {this.filteredList = data.docs; });
       if (this.selectedNo > 0) {
         setTimeout(() => {
           this.deselectAll();
@@ -62,7 +62,7 @@ export class HerdListComponent implements OnInit, OnDestroy {
 
   public refreshList() {
     let activeTab = this.route.snapshot.params.tab;
-    this.herdService.getAnimals(activeTab).then(data => {this.filteredList = data.docs; console.log(data.docs); });
+    this.herdService.getAnimals(activeTab).then(data => {this.filteredList = data.docs; });
   }
 
   public selectionChange($event) {

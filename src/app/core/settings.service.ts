@@ -4,6 +4,9 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SettingsService {
 
+  private setThemeEvent = new Subject<string>();
+  public setThemeEvent$ = this.setThemeEvent.asObservable();
+
   public settings = {
     animalTabs: [
       {
@@ -54,7 +57,8 @@ export class SettingsService {
         title: 'Duration In Herd',
         show: true
       }
-    ]
+    ],
+    theme: 'farm-app-theme'
   };
 
   private changes = new Subject<void>();
@@ -62,9 +66,20 @@ export class SettingsService {
 
   constructor() {  }
 
-  public updateSettings(name, source) { // TODO: implement array observable
-    this.settings[name] = source;
-    this.changes.next();
+  public initSettings() {
+    setTimeout(() => {
+      this.setTheme(this.settings.theme);
+    }, 0);
+    // this.setTheme(this.settings.theme);
+  }
+
+  public updateSettings(category, value) { // TODO: implement array observable
+    this.settings[category] = value;
+    this.changes.next(category);
+  }
+
+  public setTheme(theme) {
+    this.setThemeEvent.next(theme);
   }
 
 }

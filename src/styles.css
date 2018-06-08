@@ -169,3 +169,19 @@ h1, h2, h3, h4 {
   -webkit-transform: translateY(-0.78125em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
   transform: translateY(-0.78125em) scale(0.75) perspective(100px) translateZ(0.001px) !important;
 }
+
+.fa-scrollable-contnent {
+  position: relative;
+  top: 56px;
+  height: calc(100% - 56px);
+  overflow-y: scroll;
+}
+
+.fa-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.fa-radio-button {
+  margin: 10px;
+}

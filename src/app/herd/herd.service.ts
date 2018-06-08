@@ -182,14 +182,14 @@ export class HerdService {
     this.searchInHerd.next(value);
   }
 
-  public updateTabSettings(name, source) {
-    this[name] = source;
-    let settings = [];
-    for (let item of source) {
+  public updateTabSettings(category, tabs) {
+    this[category] = tabs;
+    let values = [];
+    for (let item of tabs) {
       let toSave = {title: item['title'], show: item['show']};
-      settings.push(toSave);
+      values.push(toSave);
     }
-    this.settingsService.updateSettings(name, settings);
+    this.settingsService.updateSettings(category, values);
   }
 
   public getGroups(name?) {

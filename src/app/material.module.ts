@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SmdFabSpeedDialModule } from 'angular-speed-dial';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatSnackBarModule,
     SmdFabSpeedDialModule,
     MatProgressSpinnerModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatRadioModule
   ],
   exports: [
     MatSidenavModule,
@@ -69,7 +71,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatSnackBarModule,
     SmdFabSpeedDialModule,
     MatProgressSpinnerModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

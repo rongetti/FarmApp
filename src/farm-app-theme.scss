@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
+// Default colors
 $farm-app-primary: mat-palette($mat-blue, 700);
 $farm-app-accent: mat-palette($mat-pink, 500, 900, A100);
 $farm-app-warn: mat-palette($mat-deep-orange);
@@ -8,3 +9,15 @@ $farm-app-warn: mat-palette($mat-deep-orange);
 $farm-app-theme: mat-light-theme($farm-app-primary, $farm-app-accent, $farm-app-warn);
 
 @include angular-material-theme($farm-app-theme);
+
+
+// Dark theme
+$farm-app-dark-primary: mat-palette($mat-blue-grey);
+$farm-app-dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$farm-app-dark-warn:    mat-palette($mat-deep-orange);
+
+$farm-app-dark-theme:   mat-dark-theme($farm-app-dark-primary, $farm-app-dark-accent, $farm-app-dark-warn);
+
+.farm-app-dark-theme {
+  @include angular-material-theme($farm-app-dark-theme);
+}

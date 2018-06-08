@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { HerdService } from './herd.service';
   templateUrl: './herd.component.html',
   styleUrls: ['./herd.component.css']
 })
-export class HerdComponent implements OnInit, OnDestroy {
+export class HerdComponent implements OnInit {
 
   public selectedNo = 0;
   public showSearch = false;
@@ -39,10 +39,6 @@ export class HerdComponent implements OnInit, OnDestroy {
 
   public searchInList(value) {
     this.herdService.searchInList(value);
-  }
-
-  ngOnDestroy() {
-    this.selectedNo$.unsubscribe();
   }
 
 }

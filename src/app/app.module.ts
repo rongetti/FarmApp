@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HerdModule } from './herd/herd.module';
+import { SettingsModule } from './settings/settings.module';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 
@@ -22,6 +23,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     CoreModule,
     DashboardModule,
     HerdModule,
+    SettingsModule
   ],
   declarations: [
     AppComponent,

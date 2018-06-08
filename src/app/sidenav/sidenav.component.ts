@@ -44,7 +44,7 @@ export class SidenavComponent  {
     title: 'Tutorials',
     icon: 'import_contacts'
   }, {
-    link: '/herd/list/all',
+    link: '/settings',
     title: 'Settings',
     icon: 'settings'
   }];

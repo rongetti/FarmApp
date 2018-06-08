@@ -21,7 +21,8 @@ export class LocalStorageService {
         this.settingsService.settings[record] = JSON.parse(localStorage.getItem(record));
       }
     }
-    this.settingsService.changes$.subscribe( () => this.setTo('animalTabs') );
+    this.settingsService.initSettings();
+    this.settingsService.changes$.subscribe(category => this.setTo(category));
   }
 
   private getFrom(record: string) {
@@ -34,17 +35,16 @@ export class LocalStorageService {
 
   }
 
-  private setTo(records) {
+  private setTo(category) {
 
-    if (records === 'all') {
+    if (category === 'all') {
       let settings = this.settingsService.settings;
       for (let record in settings) {
         localStorage.setItem(record, JSON.stringify(settings[record]));
       }
     } else {
-      let settings = this.settingsService.settings[records];
-      localStorage.setItem(records, JSON.stringify(settings));
-      console.log(settings);
+      let settings = this.settingsService.settings[category];
+      localStorage.setItem(category, JSON.stringify(settings));
     }
 
   }

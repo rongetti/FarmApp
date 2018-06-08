@@ -1,0 +1,42 @@
+<app-common-toolbar [title]="'Dashboard'"></app-common-toolbar>
+
+<div class="fa-scrollable-contnent">
+
+  <mat-card style="margin: 10px;">
+    <mat-grid-list cols="2" rowHeight="3:4">
+      <mat-grid-tile>
+        <mat-card-title>
+          <mat-card-header style="margin-bottom: 15px;">Animals</mat-card-header>
+          <mat-card-subtitle>{{totalAnimals}} animals in herd</mat-card-subtitle>
+          <mat-card-subtitle style="color: lightblue;">{{dueToCalf}} due to calf</mat-card-subtitle>
+          <mat-card-subtitle style="color: red;">{{inWithdrawal}} in withdrawal</mat-card-subtitle>
+          <mat-card-subtitle style="color: darkgreen;">{{nearThirtyMo}} near 30 Month</mat-card-subtitle>
+        </mat-card-title>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card-content>
+          <chart #animalsChart [type]="animalsOptions.type" [data]="animalsOptions.data" [options]="animalsOptions.options" style="width: 95%; height: 95%;"></chart>
+        </mat-card-content>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+
+  <mat-card style="margin: 10px;">
+    <mat-grid-list cols="2" rowHeight="3:4">
+      <mat-grid-tile>
+        <mat-card-title>
+          <mat-card-header style="margin-bottom: 15px;">Farm</mat-card-header>
+          <mat-card-subtitle>56 ha (12 ha rented)</mat-card-subtitle>
+          <mat-card-subtitle>830 kg feed left</mat-card-subtitle>
+          <mat-card-subtitle>120 ton of silage</mat-card-subtitle>
+        </mat-card-title>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-card-content>
+          <chart #farmChart [type]="animalsOptions.type" [data]="animalsOptions.data" [options]="animalsOptions.options" style="width: 95%; height: 95%;"></chart>
+        </mat-card-content>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+
+</div>

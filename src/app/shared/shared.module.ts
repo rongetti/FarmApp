@@ -7,6 +7,7 @@ import { DateFromStringPipe } from './date-from-string.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { SelectDialogComponent } from './select-dialog/select-dialog.component';
 import { SearchListComponent } from './search-list/search-list.component';
+import { CommonToolbarComponent } from './common-toolbar/common-toolbar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SearchListComponent } from './search-list/search-list.component';
     DateFromStringPipe,
     LoaderComponent,
     SelectDialogComponent,
-    SearchListComponent
+    SearchListComponent,
+    CommonToolbarComponent
   ],
   entryComponents: [
     SelectDialogComponent
@@ -29,7 +31,8 @@ import { SearchListComponent } from './search-list/search-list.component';
     DateFromStringPipe,
     LoaderComponent,
     SelectDialogComponent,
-    SearchListComponent
+    SearchListComponent,
+    CommonToolbarComponent
   ]
 })
 export class SharedModule { }
