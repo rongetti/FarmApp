@@ -22,6 +22,7 @@ import { SmdFabSpeedDialModule } from 'angular-speed-dial';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { MatRadioModule } from '@angular/material/radio';
     SmdFabSpeedDialModule,
     MatProgressSpinnerModule,
     MatBottomSheetModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
   ],
   exports: [
     MatSidenavModule,
@@ -72,7 +74,8 @@ import { MatRadioModule } from '@angular/material/radio';
     SmdFabSpeedDialModule,
     MatProgressSpinnerModule,
     MatBottomSheetModule,
-    MatRadioModule
+    MatRadioModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule { }

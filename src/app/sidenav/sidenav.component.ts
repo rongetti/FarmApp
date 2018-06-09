@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ANIMATE_BACKBTN } from '../const/animations';
+import { HerdService } from '../herd/herd.service';
 import { SidenavService } from '../sidenav.service';
 
 @Component({
@@ -11,51 +12,12 @@ import { SidenavService } from '../sidenav.service';
 export class SidenavComponent implements OnInit {
 
   public backbtnState: string;
+  public messages = 0;
 
   constructor(
+    public herdService: HerdService,
     private sidenavService: SidenavService
   ) { }
-
-  public menu = [
-    {
-      link: '/dashboard',
-      title: 'Dashboard',
-      icon: 'assessment'
-    }, {
-      link: '/herd/list/all',
-      title: 'Animals',
-      icon: 'list'
-    },
-    {
-      link: '/herd/list/all',
-      title: 'Farm',
-      icon: 'home'
-    }, {
-      link: '/herd/list/all',
-      title: 'Audit',
-      icon: 'playlist_add_check'
-    }
-  ];
-
-  public admin = [
-    {
-      link: '/herd/list/all',
-      title: 'Contacts',
-      icon: 'contacts'
-    }, {
-      link: '/herd/list/all',
-      title: 'Messages',
-      icon: 'comment'
-    }, {
-      link: '/herd/list/all',
-      title: 'Tutorials',
-      icon: 'import_contacts'
-    }, {
-      link: '/settings',
-      title: 'Settings',
-      icon: 'settings'
-    }
-  ];
 
   ngOnInit() {
     this.backbtnState = 'hide';

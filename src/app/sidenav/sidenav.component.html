@@ -10,8 +10,14 @@
 
 
 <mat-list>
-  <mat-list-item *ngFor="let item of menu" (click)="closeSidenav()" [routerLink]="item.link"> <span><i class="material-icons md-dark md-inactive">{{item.icon}}</i></span> {{item.title}} </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/dashboard"> <span><i class="material-icons md-dark md-inactive">assessment</i></span> Dashboard </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">list</i></span> Animals </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">home</i></span> Farm </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">playlist_add_check</i></span> Audit </mat-list-item>
   <mat-divider></mat-divider>
   <h3 matSubheader>Management</h3>
-  <mat-list-item *ngFor="let item of admin" (click)="closeSidenav()" [routerLink]="item.link"> <span><i class="material-icons md-dark md-inactive">{{item.icon}}</i></span> {{item.title}} </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">contacts</i></span> Contacts </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">comment</i></span> <span [matBadge]="messages" matBadgeOverlap="false" [matBadgeColor]="messages === 0 ? 'primary' : 'warn'">Messages</span> </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/herd/list/all"> <span><i class="material-icons md-dark md-inactive">import_contacts</i></span> Tutorials </mat-list-item>
+  <mat-list-item (click)="closeSidenav()" routerLink="/settings"> <span><i class="material-icons md-dark md-inactive">settings</i></span> Settings </mat-list-item>
 </mat-list>
