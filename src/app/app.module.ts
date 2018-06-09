@@ -13,6 +13,7 @@ import { HerdModule } from './herd/herd.module';
 import { SettingsModule } from './settings/settings.module';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { SplashComponent } from './splash/splash.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   ],
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    SplashComponent
   ],
   providers: [SidenavService],
   bootstrap: [AppComponent]

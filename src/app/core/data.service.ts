@@ -11,13 +11,10 @@ export class DataService {
   private dbHerd: PouchDB;
   private dbGroups: PouchDB;
 
-  constructor() {
-    this.initDatabase();
-  }
+  constructor() {  }
 
-  private initDatabase() {
-    this.initHerd();
-    this.initGroups();
+  public initDatabase() {
+    return this.initHerd().then(() => this.initGroups());
   }
 
   private initHerd() {

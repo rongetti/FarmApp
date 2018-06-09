@@ -1,0 +1,46 @@
+.fa-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.fa-splash-logo {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  color: #1976d2;
+  font-size: 3em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.fa-splash-loading {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  color: #1976d2;
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  opacity: 0;
+  animation-name: fade-in-fade-out;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@keyframes fade-in-fade-out {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

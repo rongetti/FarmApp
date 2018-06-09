@@ -36,6 +36,23 @@ export class DashboardComponent implements OnInit {
     }
   };
 
+  public farmOptions = {
+    type: 'doughnut',
+    data : {
+      datasets: [
+        {
+          data: [],
+          backgroundColor: ['grey', 'lightblue', 'red', 'darkgreen']
+        }
+      ]
+    },
+    options: {
+      legend: false,
+      responsive: true,
+      maintainAspectRatio: true
+    }
+  };
+
   constructor(
     public herdService: HerdService
   ) {  }
@@ -47,6 +64,7 @@ export class DashboardComponent implements OnInit {
   private getData() {
 
     this.herdService.getAnimals().then(data => {
+
       this.totalAnimals = data.docs.length;
       for (let animal of data.docs) {
         if (animal['inCalf']) {
@@ -64,6 +82,10 @@ export class DashboardComponent implements OnInit {
       let remainingAnimals = this.totalAnimals - this.dueToCalf - this.inWithdrawal - this.nearThirtyMo;
       this.animalsOptions.data.datasets[0].data = [remainingAnimals, this.dueToCalf, this.inWithdrawal, this.nearThirtyMo];
       this.animalsChart.chart.update();
+
+      this.farmOptions.data.datasets[0].data = [25, 10, 6, 3];
+      this.farmChart.chart.update();
+
     });
   }
 

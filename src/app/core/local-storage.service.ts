@@ -8,7 +8,7 @@ export class LocalStorageService {
     private settingsService: SettingsService
   ) {  }
 
-  init() {
+  public init() {
     this.initSettings();
   }
 

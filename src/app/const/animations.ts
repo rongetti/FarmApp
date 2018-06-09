@@ -44,3 +44,28 @@ export const ANIMATE_BACKBTN = [
     transition('hide => show', animate('500ms 100ms ease-out'))
   ])
 ];
+
+export const ANIMATE_SPLASH_LOGO = [
+  trigger('animateSplashLogo', [
+    state('*', style({transform: 'translateY(0)'})),
+    transition('void => *', [
+      style({
+        transform: 'translateY(-500%)'
+      }),
+      animate('1s 3s ease-out')
+    ])
+  ])
+];
+
+export const ANIMATE_SPLASH_LOADING = [
+  trigger('animateSplashLoading', [
+    state('*', style({opacity: '1'})),
+    transition('void => *', [
+      animate(500, keyframes([
+        style({opacity: 0, offset: 0}),
+        style({opacity: 1, offset: 0.5}),
+        style({opacity: 0, offset: 1.0})
+      ]))
+    ]),
+  ])
+];

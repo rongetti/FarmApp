@@ -1,7 +1,9 @@
 import { Component, HostBinding, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 import { OverlayContainer } from '@angular/cdk/overlay';
 
+import { DataService } from './core/data.service';
 import { LocalStorageService } from './core/local-storage.service';
 import { SidenavService } from './sidenav.service';
 import { SettingsService } from './core/settings.service';
@@ -19,17 +21,27 @@ export class AppComponent implements OnInit {
   public setThemeEvent$;
 
   constructor(
-    private sidenavService: SidenavService,
+    private router: Router,
+    private data: DataService,
     private localStorageService: LocalStorageService,
     private settingsService: SettingsService,
-    public overlayContainer: OverlayContainer
+    public overlayContainer: OverlayContainer,
+    private sidenavService: SidenavService,
   ) {
-    this.localStorageService.init();
+
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.sidenavService.setSidenav(this.sidenav);
     this.setThemeEvent$ = this.settingsService.setThemeEvent$.subscribe(theme => this.setTheme(theme));
+
+    this.localStorageService.init();
+
+    this.data.initDatabase().then(() => {
+      setTimeout(() => {
+        this.router.navigate(['/dashboard']);
+      } , 4000);
+    });
   }
 
   public setTheme(theme) {
