@@ -37,7 +37,7 @@
     <h3 >In this group ({{ group.animals ? group.animals.length : 0 }}):</h3>
   </div>
 
-  <mat-list class="fa-animal-list">
+  <mat-list>
     <mat-list-item *ngFor="let animal of group.animals">
       <h3 matLine><i class="material-icons md-dark md-18" style="vertical-align: top;">local_offer</i> {{animal}} </h3>
       <button mat-button color="warn" (click)="removeFromGroup(animal)">Remove</button>

@@ -53,6 +53,11 @@ h1, h2, h3, h4 {
   font-weight: 400 !important;
 }
 
+a, a:active, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -108,8 +113,27 @@ h1, h2, h3, h4 {
   width: 100%;
 }
 
-.mat-tab-nav-bar {
-  overflow-x: scroll !important;
+app-herd-toolbar, app-herd-toolbar-selection {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+app-herd-tabs {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+app-herd-tabs .mat-tab-nav-bar {
+  overflow: visible;
+}
+
+.fa-search-fixed {
+  position: fixed;
+  top: 56px;
+  width: 100%;
 }
 
 .mat-tab-links {
@@ -143,6 +167,9 @@ h1, h2, h3, h4 {
 }
 
 .fa-animal-list {
+  position: fixed;
+  top: 105px;
+  width: 100%;
   height: calc(100% - 105px);
   overflow-y: scroll;
 }

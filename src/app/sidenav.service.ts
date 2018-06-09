@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class SidenavService {
   private sidenav: MatSidenav;
+
+  private openedStartEvent = new Subject<void>();
+  public openedStartEvent$ = this.openedStartEvent.asObservable();
+  private closedStartEvent = new Subject<void>();
+  public closedStartEvent$ = this.closedStartEvent.asObservable();
 
   /**
    * Setter for sidenav.
@@ -42,4 +48,13 @@ export class SidenavService {
   public toggle(isOpen?: boolean): Promise<MatDrawerToggleResult> {
     return this.sidenav.toggle(isOpen);
   }
+
+  public openedStart() {
+    this.openedStartEvent.next();
+  }
+
+  public closedStart() {
+    this.closedStartEvent.next();
+  }
+
 }

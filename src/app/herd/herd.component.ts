@@ -4,10 +4,12 @@ import { of } from 'rxjs';
 import { filter, switchMap } from 'rxjs/operators';
 
 import { HerdService } from './herd.service';
+import { ANIMATE_IN_OUT } from '../const/animations';
 
 @Component({
   templateUrl: './herd.component.html',
-  styleUrls: ['./herd.component.css']
+  styleUrls: ['./herd.component.css'],
+  animations: ANIMATE_IN_OUT
 })
 export class HerdComponent implements OnInit {
 

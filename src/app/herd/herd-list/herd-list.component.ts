@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSelectionList } from '@angular/material/list';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { HerdService } from '../herd.service';
 import { HerdAddAnimalComponent } from '../herd-add-animal/herd-add-animal.component';
@@ -48,7 +48,9 @@ export class HerdListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.selectedNo = 0;
     this.route.params.subscribe(params => {
-      this.herdService.getAnimals(params['tab']).then(data => {this.filteredList = data.docs; });
+      this.herdService.getAnimals(params['tab']).then(data => {
+        this.filteredList = data.docs;
+      });
       if (this.selectedNo > 0) {
         setTimeout(() => {
           this.deselectAll();

@@ -37,4 +37,12 @@ export class AppComponent implements OnInit {
     this.componentCssClass = theme;
   }
 
+  public openedStart() {
+    this.sidenavService.openedStart();
+  }
+
+  public closedStart() {
+    this.sidenavService.closedStart();
+  }
+
 }

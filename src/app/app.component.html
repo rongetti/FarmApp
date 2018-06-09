@@ -1,6 +1,6 @@
 <mat-sidenav-container class="mat-app-background">
 
-  <mat-sidenav #sidenav mode="over" [ngStyle]="{'width': '83.4%'}">
+  <mat-sidenav #sidenav mode="over" [ngStyle]="{'width': '83.4%'}" (openedStart)="openedStart()" (closedStart)="closedStart()">
     <router-outlet name="sidenav"></router-outlet>
   </mat-sidenav>
 

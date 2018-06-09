@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <h1>FarmApp</h1>
-    <div (click)="closeSidenav()" style="position: absolute; right: 10px;"><i class="material-icons md-light md-36" >arrow_back</i></div>
+    <div [@animateBackbtn]="backbtnState" (click)="closeSidenav()" style="position: absolute; top: 10px; right: 10px;"><i class="material-icons md-light md-36" >arrow_back</i></div>
   </mat-toolbar-row>
   <mat-toolbar-row>
     <i class="material-icons md-48 md-light">person</i>
