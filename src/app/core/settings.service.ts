@@ -70,7 +70,6 @@ export class SettingsService {
     setTimeout(() => {
       this.setTheme(this.settings.theme);
     }, 0);
-    // this.setTheme(this.settings.theme);
   }
 
   public updateSettings(category, value) { // TODO: implement array observable

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     private data: DataService,
     private localStorageService: LocalStorageService,
     private settingsService: SettingsService,
-    public overlayContainer: OverlayContainer,
+    private overlayContainer: OverlayContainer,
     private sidenavService: SidenavService,
   ) {
 
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     this.data.initDatabase().then(() => {
       setTimeout(() => {
         this.router.navigate(['/dashboard']);
-      } , 4000);
+      } , 6000);
     });
   }
 

@@ -56,16 +56,3 @@ export const ANIMATE_SPLASH_LOGO = [
     ])
   ])
 ];
-
-export const ANIMATE_SPLASH_LOADING = [
-  trigger('animateSplashLoading', [
-    state('*', style({opacity: '1'})),
-    transition('void => *', [
-      animate(500, keyframes([
-        style({opacity: 0, offset: 0}),
-        style({opacity: 1, offset: 0.5}),
-        style({opacity: 0, offset: 1.0})
-      ]))
-    ]),
-  ])
-];
