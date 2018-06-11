@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatSelectionList } from '@angular/material/list';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +16,7 @@ import { HerdChooseGroupComponent } from '../herd-choose-group/herd-choose-group
   templateUrl: './herd-list.component.html',
   styleUrls: ['./herd-list.component.css']
 })
-export class HerdListComponent implements OnInit, OnDestroy {
+export class HerdListComponent implements OnInit {
 
   @ViewChild('animalList') animalList: MatSelectionList;
 
@@ -95,9 +95,8 @@ export class HerdListComponent implements OnInit, OnDestroy {
 
   public deselectAll() {
     this.animalList.deselectAll();
-    let list = this.getUnselectedOptions();
-    for (let item of list) {
-      let index = this.herdService.currentSelection.indexOf(item);
+    for (let item of this.filteredList) {
+      let index = this.herdService.currentSelection.indexOf(item['tag']);
       if (index > -1) {
         this.herdService.currentSelection.splice(index, 1);
       }
@@ -108,22 +107,6 @@ export class HerdListComponent implements OnInit, OnDestroy {
   private setSelectedNo() {
     this.selectedNo = this.herdService.currentSelection.length;
     this.herdService.setSelectedNo();
-  }
-
-  private getUnselectedOptions() {
-    let allShown = [];
-    let selected = [];
-
-    for (let i in this.animalList.selectedOptions.selected) {
-      selected.push(this.animalList.selectedOptions.selected[i].value);
-    }
-
-    let options = document.getElementsByTagName('mat-list-option'); // TODO: Find better solution
-    Array.prototype.forEach.call(options, function(el) {
-      allShown.push(el.attributes['ng-reflect-value'].value);
-    });
-
-    return allShown.filter( i => selected.indexOf(i) === -1  );
   }
 
   private searchInList(value) {
@@ -232,10 +215,6 @@ export class HerdListComponent implements OnInit, OnDestroy {
         }
       });
     }, 200);
-  }
-
-  ngOnDestroy() {
-    this.deselectAll();
   }
 
 }
