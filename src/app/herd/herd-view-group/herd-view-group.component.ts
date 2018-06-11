@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
+import { Group } from '../../const/group';
 import { HerdService } from '../herd.service';
 import { HerdGroupsComponent } from '../herd-groups/herd-groups.component';
 import { SelectDialogComponent } from '../../shared/select-dialog/select-dialog.component';
@@ -11,7 +12,7 @@ import { SelectDialogComponent } from '../../shared/select-dialog/select-dialog.
 })
 export class HerdViewGroupComponent implements OnInit {
 
-  public group = {};
+  public group = new Group();
   public showLoader = false;
   public loaderLabel: string;
 

@@ -40,11 +40,11 @@ export class HerdFabComponent implements OnInit {
     this.open = $event ? !$event : $event;
   }
 
-  public addTreatment(dialog) {
+  public addTreatment(dialog?) {
     this.hideTooltips();
   }
 
-  public openEditDialog(dialog) {
+  public openEditDialog(dialog?) {
     this.hideTooltips();
     this.openEditDialogEvent.emit();
   }

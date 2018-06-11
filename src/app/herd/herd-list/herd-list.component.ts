@@ -236,8 +236,6 @@ export class HerdListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.deselectAll();
-    this.selectAll$.unsubscribe();
-    this.deselectAll$.unsubscribe();
   }
 
 }

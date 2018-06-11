@@ -27,9 +27,7 @@ export class AppComponent implements OnInit {
     private settingsService: SettingsService,
     private overlayContainer: OverlayContainer,
     private sidenavService: SidenavService,
-  ) {
-
-  }
+  ) {  }
 
   ngOnInit() {
     this.sidenavService.setSidenav(this.sidenav);
@@ -39,8 +37,10 @@ export class AppComponent implements OnInit {
 
     this.data.initDatabase().then(() => {
       setTimeout(() => {
-        this.router.navigate(['/dashboard']);
-      } , 6000);
+        if (this.router.url === '/splash') {
+          this.router.navigate(['/dashboard']);
+        }
+      } , 5000);
     });
   }
 

@@ -4,6 +4,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
 
+import { Animal } from '../../const/animal';
 import { HerdService } from '../herd.service';
 import { DATE_FORMAT } from '../../const/date-format';
 import { HerdAddAnimalComponent } from '../herd-add-animal/herd-add-animal.component';
@@ -20,7 +21,7 @@ import { DateFromStringPipe } from '../../shared/date-from-string.pipe';
 })
 export class HerdEditAnimalComponent extends HerdAddAnimalComponent implements OnInit {
 
-  public animal = {};
+  public animal = new Animal();
 
   public dob: Date;
   public calfDate: Date;
